@@ -17,4 +17,3 @@ elif duration // 86400 >= 1:  # проверяем продолжительно�
     minute_duration = ((duration % 86400) % 3600) // 60
     second_duration = ((duration % 86400) % 3600) % 60
     print(f'{day_duration} дн {hour_duration} час {minute_duration} мин {second_duration} сек')
-    pass
