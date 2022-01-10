@@ -1,0 +1,5 @@
+n = int(input('Веедите число, включая которое будет работать генератор: '))
+nums_gen = (num for num in range(1, n + 1) if num % 2 != 0)
+print(nums_gen)
+print(type(nums_gen))
+print(*nums_gen)
