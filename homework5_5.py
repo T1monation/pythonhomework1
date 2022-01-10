@@ -34,17 +34,9 @@ result_3 = [num for num in src if num in unique_nums]
 print(result_3)
 print(3, perf_counter() - start)
 
-# Решение через словари
-start = perf_counter()
-result_dict_1 = {}
-for el in src:
-    result_dict_1.setdefault(el)
-result_4 = result_dict_1.keys()
-print(list(result_4))
-print(4, perf_counter() - start)
 
 # Еще одно решение через словари
 start = perf_counter()
-result_dict_2 = {el: None for el in src}
+result_dict_2 = {el: None for el in src if src.count(el) == 1}
 print(list(result_dict_2))
 print(5, perf_counter() - start)
