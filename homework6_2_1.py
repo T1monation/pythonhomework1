@@ -7,13 +7,13 @@ with open('new_data.txt', 'r', encoding='utf-8') as f:
 temp_dict = {}
 max_value = 0
 for el in new_list:
-    temp_var = temp_dict.setdefault(el[0], 1)
+    temp_var = temp_dict.setdefault(el[0], 1)  # Недостаток: из-за особенностей кода добавляеться лишняя единица
     if temp_var == 0:
         continue
     elif temp_var > 0:
         temp_dict[el[0]] = temp_var + 1
     if max_value < temp_dict[el[0]]:
-        max_value = temp_dict[el[0]]
+        max_value = temp_dict[el[0]] - 1  # Убираем лишнюю еденицу
         key_origin = el[0]
 
 # for key in temp_dict:

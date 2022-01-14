@@ -9,7 +9,7 @@ if len(sys.argv) == 2:
         n = 0
         for line in f:
             n += 1
-            if n == int(sys.argv[1]):
+            if n >= int(sys.argv[1]):
                 print(line[:-1])
 
 elif len(sys.argv) == 3:
