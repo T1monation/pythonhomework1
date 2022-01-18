@@ -76,9 +76,18 @@ def get_dir_list(arg_ca=False, arg_da=False, file_name='config.yaml'):
             else:
                 f_log_path.write(f'{temp_list} успешно создан {datetime.datetime.today()}\n')
         f_log_path.write(f'Структура проекта успешно создана {datetime.datetime.today()}\n')
+    # Вызываем функцию для поиска и копирования шаблонов
+    try:
+        find_and_copy_sample(file_name)
+    except:
+        print('oops')
     print(f'Работа скрипта завершена.\n'
           f'Файлы log_path.txt и {file_name} находятся в каталоге '
           f'my_project/mainapp/templates')
+    if os.path.exists('my_project/mainapp/templates/'):
+        pass
+    else:
+        os.makedirs('my_project/mainapp/templates/')
     shutil.move('log_path.txt', 'my_project/mainapp/templates/log_path.txt')
     shutil.copy(file_name, f'my_project/mainapp/templates/{file_name}')
 
@@ -128,6 +137,29 @@ def create_starter_tree(path, is_file, arg_ca=False, arg_da=False):
         print(f'Ошибка {e3}')
     except Exception as e4:
         print(f'Ошибка {e4}')
+
+
+
+def find_and_copy_sample(file_name, arg_1='base.html', arg_2='index.html'):
+    item_path = []
+    homework_path = 'mainapp\\templates'  # исходя из ДЗ - путь для хранения шаблонов
+    with open(file_name, 'r', encoding='utf_8') as f:
+        # Читаем имя родительской папки проекта из шаблона по которому разворачивался проект
+        root_dir = f.readline()[3:].strip()
+    for root, dirs, files in os.walk(f'{root_dir}/'):
+        if homework_path in root:  # Игнорируем каталог хранения шаблонов
+            pass
+        else:
+            # формируем список с кортежами, где первый элемент - копируемый файл, второй элемент путь копирования
+            # файла, третий элемент  - путь для создания каталога этого файла
+            for file in files:
+                if file == arg_1 or file == arg_2:
+                    item_path.append((os.path.join(root, file),
+                                      os.path.join(root_dir, homework_path, os.path.join(root, file).split('/')[1]),
+                                      os.path.join(root_dir, homework_path, root.split('/')[1])))
+    for item in item_path:
+        os.makedirs(item[2], exist_ok=True)
+        shutil.copy(item[0], item[1])
 
 
 arg_ca = False
