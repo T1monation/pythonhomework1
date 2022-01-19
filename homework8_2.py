@@ -17,7 +17,7 @@ def log_parse(log_str):
 
 file = 'nginx_logs.txt'
 url = 'https://github.com/elastic/examples/raw/master/Common%20Data%20Formats/nginx_logs/nginx_logs'
-print(f'Загружаем файл {file} по адресу:\n'
+print(f'Загружаем файл {file} по из источника:\n'
       f'{url}')
 urllib.request.urlretrieve(url, file)
 print(f'Файл {file} успешно загружен.')
