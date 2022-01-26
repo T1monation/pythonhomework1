@@ -6,10 +6,10 @@ def valid_type_wrap(valid_fanc):
         @wraps(func)
         def wrapper(*args):
             result = func(*args)
-            if valid_fanc(x):
+            if valid_fanc(*args):
                 return result
             else:
-                raise ValueError(f'wrong value {x}')
+                raise ValueError(f'wrong value {args}')
 
         return wrapper
 
@@ -23,7 +23,7 @@ def calc_cube(num):
     return num ** 3
 
 
-x = 7
+x = 6
 
 print(calc_cube(x))
 help(calc_cube)
